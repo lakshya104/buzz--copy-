@@ -1,0 +1,120 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                String           @id @default(cuid())
+  name              String?
+  email             String?          @unique
+  emailVerified     DateTime?
+  image             String?
+  password          String?
+  points            Int              @default(0)
+  accounts          Account[]
+  redeemedRewards   RedeemedReward[]
+  answeredQuestions UserAnswer[]
+  role              Role             @default(USER)
+  FeedItem          FeedItem[]
+}
+
+enum Role {
+  USER
+  ADMIN
+  BRAND_MANAGER
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Reward {
+  id              String           @id @default(cuid())
+  name            String
+  image           String
+  description     String
+  redeemedRewards RedeemedReward[]
+}
+
+model RedeemedReward {
+  id         String   @id @default(cuid())
+  userId     String
+  rewardId   String
+  redeemedAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  reward Reward @relation(fields: [rewardId], references: [id])
+
+  @@index([userId, rewardId], name: "unique_redeemed_reward")
+}
+
+model Question {
+  id         String       @id @default(cuid())
+  text       String
+  answers    Answer[] 
+  answeredBy UserAnswer[]
+  FeedItem   FeedItem    @relation(fields: [feedItemId], references: [id])
+  feedItemId String
+}
+
+model Answer {
+  id         String   @id @default(cuid())
+  text       String
+  isCorrect  Boolean
+  question   Question @relation(fields: [questionId], references: [id],onDelete: Cascade)
+  questionId String
+}
+
+model UserAnswer {
+  id         String   @id @default(cuid())
+  userId     String
+  questionId String
+  answeredAt DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id])
+  question Question @relation(fields: [questionId], references: [id])
+
+  @@unique([userId, questionId], name: "unique_user_question_answer")
+}
+
+model FeedItem {
+  id          String     @id @default(cuid())
+  type        FeedType
+  title       String
+  description String
+  subTitle    String?
+  url         String?
+  link        String?
+  createdBy   String
+  questions   Question[]
+  createdAt   DateTime   @default(now())
+  creator     User       @relation(fields: [createdBy], references: [id])
+}
+
+enum FeedType {
+  BLOG_POST
+  IMAGE
+  VIDEO
+}
