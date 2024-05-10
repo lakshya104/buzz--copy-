@@ -22,13 +22,13 @@ export const Sidebar = ({ className }) => {
         </div>
       <div className="flex flex-col gap-y-2 flex-1">
         <SidebarItem label="Home" href="/home" iconSrc="/feed.svg" />
-        {/* <SidebarItem label="Quiz" href="/quiz" iconSrc="/quiz.svg" /> */}
         <SidebarItem
           label="Leaderboard"
           href="/leaderboard"
           iconSrc="/leaderboard.svg"
         />
         <SidebarItem label="Redeem" href="/redeem" iconSrc="/redeem.svg" />
+        <SidebarItem label="Profile" href="/profile" iconSrc="/profile2.svg" />
         <SidebarItem label="Support" href="/support" iconSrc="/support.svg" />
         <SidebarItem label="T&C" href="/termsConditions" iconSrc="/terms.svg" />
       </div>

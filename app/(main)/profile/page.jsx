@@ -1,16 +1,18 @@
 import { auth } from "@/auth";
+import { ProgressBarLink } from "@/components/progress-bar";
+import { Button } from "@/components/ui/button";
 import { getUserByEmail } from "@/data/user";
 import Image from "next/image";
 import React from "react";
+import { FcRight } from "react-icons/fc";
 
 const Profile = async () => {
-    const session = await auth()
-    const user = await getUserByEmail(session.user.email);
-    console.log(user);
+  const session = await auth();
+  const user = await getUserByEmail(session.user.email);
   return (
-    <div className="mx-auto p-5 bg-white shadow-lg rounded-lg font-inter">
+    <div className="mx-auto px-8 py-3 bg-white shadow-lg rounded-lg font-inter">
       <div className="text-center">
-        <div className="mx-auto mb-4 mt-16 w-32 h-32 md:w-48 md:h-48 relative border-4 border-white rounded-full">
+        <div className="mx-auto mb-4 mt-6 w-32 h-32 md:w-48 md:h-48 relative border-4 border-white rounded-full">
           <Image
             className="rounded-full"
             src={`https://picsum.photos/200`}
@@ -19,8 +21,20 @@ const Profile = async () => {
             sizes="190px"
           />
         </div>
-        <h1 className="text-3xl md:text-4xl font-extrabold mt-2 font-poppins text-slate-900">{user.name}</h1>
+        <h1 className="text-3xl md:text-4xl font-extrabold mt-2 font-poppins text-slate-900">
+          {user.name}
+        </h1>
         <p className="text-lg text-sky-800 font-semibold">{user.role}</p>
+        {user.role !== "USER" && (
+          <ProgressBarLink href={"/dashboard"}>
+            <Button
+              className="mt-2 border border-b-4 border-indigo-500"
+              variant="superOutline"
+            >
+              Go to Admin Panel <FcRight className="stroke-[4] ml-2 w-5 h-5" />
+            </Button>
+          </ProgressBarLink>
+        )}
       </div>
 
       <div className="mt-8 border-t pt-6">
@@ -37,13 +51,17 @@ const Profile = async () => {
             <p className="text-lg font-semibold text-sky-700">
               Answered Questions
             </p>
-            <p className="mt-2 text-lg text-gray-900">{user.answeredQuestions.length}</p>
+            <p className="mt-2 text-lg text-gray-900">
+              {user.answeredQuestions.length}
+            </p>
           </div>
           <div className="sm:col-span-1 lg:col-span-2">
             <p className="text-lg font-semibold text-sky-700">
               Redeemed Rewards
             </p>
-            <p className="mt-2 text-lg text-gray-900">{user.redeemedRewards.length}</p>
+            <p className="mt-2 text-lg text-gray-900">
+              {user.redeemedRewards.length}
+            </p>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { AlignRightIcon, ArrowBigRight } from "lucide-react";
+import { ArrowBigRight } from "lucide-react";
 import Image from "next/image";
 
 export const Footer = () => {

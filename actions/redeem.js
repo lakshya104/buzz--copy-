@@ -48,7 +48,7 @@ export const pointIncrease = async () => {
         email,
       },
       data: {
-        points: user.points + 1,
+        points: user.points + 5,
       },
     });
 

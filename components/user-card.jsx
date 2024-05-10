@@ -6,7 +6,7 @@ const UserCard = async () => {
   const session = await auth();
 
   return (
-    <div className="flex justify-between items-center space-x-4 shadow-2xl py-6 px-8">
+    <div className="flex justify-center items-center p-4 lg:p-6 shadow-2xl min-w-[250px] w-auto">
       <div className="space-y-1">
         <h4 className="text-sm text-sky-700 font-semibold">Welcome to Buzz</h4>
         <p className="text-sm">

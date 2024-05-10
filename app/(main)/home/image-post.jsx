@@ -23,7 +23,7 @@ const ImagePost = ({ item }) => {
         <h2 className="text-lg lg:text-xl text-center font-semibold text-gray-600 my-3">
           {item.subTitle}
         </h2>
-        <p class="text-gray-600 text-base lg:text-lg px-8 mb-6 text-justify">
+        <p className="text-gray-600 text-base lg:text-lg px-8 mb-6 text-justify">
           {item.description}
         </p>
       </div>

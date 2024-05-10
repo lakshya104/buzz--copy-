@@ -25,7 +25,7 @@ const VideoPlayer = ({ title, videosrc, description, id }) => {
           url={videosrc}
           playing={true}
           controls={true}
-          light={"https://buzz-navy.vercel.app/watch.svg"}
+          light={"https://buzz-copy.vercel.app/watch.svg"}
           pip={true}
           muted={true}
           stopOnUnmount={false}
@@ -33,7 +33,7 @@ const VideoPlayer = ({ title, videosrc, description, id }) => {
         />
       )}
       <source src={videosrc} type="video/mp4" />
-      <p class="text-gray-600 text-base lg:text-lg p-4 mb-6 text-justify">
+      <p className="text-gray-600 text-base lg:text-lg p-4 mb-6 text-justify">
         {description}
       </p>
       <ProgressBarLink href={`blog/${id}`} className="w-full">

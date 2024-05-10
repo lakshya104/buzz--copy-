@@ -26,7 +26,7 @@ const VideoPlayer = ({ data }) => {
           url={data.url}
           playing={true}
           controls={true}
-          light="https://buzz-navy.vercel.app/watch.svg"
+          light="https://buzz-copy.vercel.app/watch.svg"
           pip={true}
           muted={true}
           stopOnUnmount={false}

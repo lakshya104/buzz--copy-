@@ -24,7 +24,7 @@ const ProfileDropdown = async () => {
           height={100}
         />
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="lg:p-5 p-1 min-w-[250px]">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

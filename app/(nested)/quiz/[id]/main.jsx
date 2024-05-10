@@ -7,7 +7,7 @@ import { BackHeader } from "../../backHeader";
 const Main = async ({ ques, id }) => {
   const pointIncrement = async () => {
     "use server"
-     pointIncrease();
+    await pointIncrease();
   };
 
   const pointDecrement = async () => {
