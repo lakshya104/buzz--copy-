@@ -1,6 +1,13 @@
+import { auth } from "@/auth";
 import { Header } from "@/components/header";
+import { redirect } from "next/navigation";
 
-const AdminLayout = ({ children }) => {
+const AdminLayout = async ({ children }) => {
+  const session = await auth();
+  if (session.user.role === "USER") {
+    redirect("/home");
+  }
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -9,7 +16,7 @@ const AdminLayout = ({ children }) => {
           Admin Panel <span className="text-base">(Dashboard)</span>
         </h1>
         <div className="bg-white shadow-md rounded-lg p-1 lg:p-6">
-            {children}
+          {children}
         </div>
       </div>
     </div>
