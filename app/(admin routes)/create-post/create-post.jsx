@@ -28,6 +28,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { postFormSchema } from "@/schemas";
+import { ArrowLeft } from "lucide-react";
+import { ProgressBarLink } from "@/components/progress-bar";
 
 export const CreatePost = ({ userId }) => {
   const router = useRouter();
@@ -68,7 +70,20 @@ export const CreatePost = ({ userId }) => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-800 p-3">Create Post</h1>
+     <div className="bg-white max-w-2xl my-3 flex lg:space-y-0 space-x-5 lg:flex-row items-center justify-evenly lg:ml-2 lg:z-40">
+        <ProgressBarLink href="/dashboard" className="w-[30%] ml-2">
+          <Button
+            variant="ghost"
+            className="border border-neutral-300"
+            size="sm"
+          >
+            <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
+          </Button>
+        </ProgressBarLink>
+        <h1 className="lg:text-3xl w-[60%] text-xl font-bold text-gray-800">
+          Create Post
+        </h1>
+      </div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

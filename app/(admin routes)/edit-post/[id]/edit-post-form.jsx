@@ -29,6 +29,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { postFormSchema } from "@/schemas";
 import { CancelEditBtn, DeletePostBtn } from "./delete-post-btn";
+import { ProgressBarLink } from "@/components/progress-bar";
+import { ArrowLeft } from "lucide-react";
 
 export const EditPostForm = ({ feedItem }) => {
   const router = useRouter();
@@ -61,14 +63,22 @@ export const EditPostForm = ({ feedItem }) => {
 
   return (
     <div className="p-2">
-      <h1 className="text-3xl font-bold text-gray-800 m-2 mb-6">
-        Edit Post:{" "}
-        <span className="text-sky-700 text-xl">{feedItem.title}</span>
-      </h1>
-      <div className="flex w-full">
-        <DeletePostBtn id={feedItem.id} />
-        <CancelEditBtn />
+      <div className="bg-white max-w-2xl mt-3 mb-6 flex lg:space-y-0 space-x-5 lg:flex-row items-center justify-between lg:ml-2 lg:z-40">
+        <ProgressBarLink href="/dashboard">
+          <Button
+            variant="ghost"
+            className="border border-neutral-300"
+            size="sm"
+          >
+            <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
+          </Button>
+        </ProgressBarLink>
+        <h1 className="lg:text-3xl text-xl font-bold text-gray-800">
+          Edit Post:{" "}
+          <span className="text-sky-700 text-lg lg:text-xl">{feedItem.title}</span>
+        </h1>
       </div>
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -197,7 +207,10 @@ export const EditPostForm = ({ feedItem }) => {
           </Button>
         </form>
       </Form>
-      
+      <div className="flex w-full">
+        <DeletePostBtn id={feedItem.id} />
+        <CancelEditBtn />
+      </div>
     </div>
   );
 };

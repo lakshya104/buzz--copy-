@@ -67,8 +67,8 @@ export const CancelEditBtn = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          variant="superOutline"
-          className="my-2 border-indigo-600 border-2 mx-4"
+          variant="primaryOutline"
+          className="my-2 border-sky-600 border-2 mx-4"
         >
           <DeleteIcon /> <span className="ml-1 font-semibold">Cancel</span>
         </Button>

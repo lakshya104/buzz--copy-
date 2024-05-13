@@ -19,6 +19,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { createQuestionWithAnswers } from "@/actions/redeem";
 import { useState } from "react";
 import { questionFormSchema } from "@/schemas";
+import { ArrowLeft } from "lucide-react";
+import { ProgressBarLink } from "@/components/progress-bar";
 
 export const QuestionForm = ({ id }) => {
   const router = useRouter();
@@ -60,10 +62,21 @@ export const QuestionForm = ({ id }) => {
 
   return (
     <div className="mx-auto my-4 p-1 lg:p-3 w-full">
-      <h1 className="text-2xl text-center font-bold text-gray-800 mb-6">
-        Create New Question for :{" "}
-        <span className="text-lg text-sky-700">{title}</span>
-      </h1>
+      <div className="flex justify-start items-center mb-6">
+        <ProgressBarLink href={`/manage-question/${id}?title=${title}`} className="w-[30%] ml-2">
+          <Button
+            variant="ghost"
+            className="border border-neutral-300"
+            size="sm"
+          >
+            <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
+          </Button>
+        </ProgressBarLink>
+        <h1 className="text-2xl text-center font-bold text-gray-800">
+          Create New Question for :{" "}
+          <span className="text-lg text-sky-700">{title}</span>
+        </h1>
+      </div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
