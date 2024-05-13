@@ -116,6 +116,10 @@ const Questions = ({ ques, id, inc, dec }) => {
           </ul>
         </div>
       ))}
+
+      {ques.length === answeredQuestions.length && (
+        <Button> Try Your Luck </Button>
+      )}
     </div>
   );
 };
