@@ -15,8 +15,10 @@ const VideoPlayer = ({ data }) => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center flex-col my-8 lg:p-5 lg:w-[600px] w-[320px] mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-     <div className=" w-full"> <BackHeader title={"Post"} /></div>
+    <div className="flex justify-center items-center flex-col my-2 lg:p-5 lg:w-[700px] w-[320px] mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="w-full">
+        <BackHeader title={"Post"} />
+      </div>
       {!hasWindow ? (
         <Skeleton className="h-64 lg:h-96 bg-slate-300 rounded-none w-full" />
       ) : (
@@ -34,7 +36,7 @@ const VideoPlayer = ({ data }) => {
           style={{ aspectRatio: "16 / 9" }} // Maintain aspect ratio
         />
       )}
-      <h2 className="text-2xl lg:text-3xl mt-4 font-bold text-sky-800 mb-4">
+      <h2 className="text-2xl lg:text-3xl mt-4 text-center font-bold text-sky-800 mb-4">
         {data.title}
       </h2>
       <p className="w-full lg:px-12 lg:py-4 p-2 px-3 my-2 text-justify text-gray-600 text-base">

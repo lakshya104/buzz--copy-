@@ -21,6 +21,7 @@ import { updateQuestionAndAnswers } from "@/actions/redeem";
 import { questionFormSchema } from "@/schemas";
 import { ProgressBarLink } from "@/components/progress-bar";
 import { ArrowLeft } from "lucide-react";
+import { NavTooltip } from "@/components/nav-tooltip";
 
 const UpdateQuestionForm = ({ text, answers, id, feedId }) => {
   const router = useRouter();
@@ -96,22 +97,23 @@ const UpdateQuestionForm = ({ text, answers, id, feedId }) => {
 
   return (
     <div className="mx-auto my-1 p-1 w-full">
-      {/* <h1 className="text-lg text-center font-semibold text-gray-800 mb-2">
-        Update Question for :{" "}
-        <span className="text-base text-sky-700">{title}</span>
-      </h1> */}
-       <div className="flex justify-start items-center mb-6">
-        <ProgressBarLink href={`/manage-question/${feedId}?title=${title}`} className="w-[30%] ml-2">
-          <Button
-            variant="ghost"
-            className="border border-neutral-300"
-            size="sm"
-          >
-            <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
-          </Button>
+      <div className="flex justify-start items-center mb-6">
+        <ProgressBarLink
+          href={`/manage-question/${feedId}?title=${title}`}
+          className="w-[30%] ml-2"
+        >
+          <NavTooltip content={"Go back to Manage questions page"}>
+            <Button
+              variant="ghost"
+              className="border border-neutral-300"
+              size="sm"
+            >
+              <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
+            </Button>
+          </NavTooltip>
         </ProgressBarLink>
         <h1 className="text-2xl text-center font-bold text-gray-800">
-         Update Question for :{" "}
+          Update Question for :{" "}
           <span className="text-lg text-sky-700">{title}</span>
         </h1>
       </div>

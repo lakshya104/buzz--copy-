@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 const AdminLayout = async ({ children }) => {
   const session = await auth();
-  if (session.user.role === "USER") {
+  if (session?.user.role === "USER") {
     redirect("/home");
   }
   

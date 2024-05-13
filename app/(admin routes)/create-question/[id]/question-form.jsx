@@ -21,6 +21,7 @@ import { useState } from "react";
 import { questionFormSchema } from "@/schemas";
 import { ArrowLeft } from "lucide-react";
 import { ProgressBarLink } from "@/components/progress-bar";
+import { NavTooltip } from "@/components/nav-tooltip";
 
 export const QuestionForm = ({ id }) => {
   const router = useRouter();
@@ -64,6 +65,7 @@ export const QuestionForm = ({ id }) => {
     <div className="mx-auto my-4 p-1 lg:p-3 w-full">
       <div className="flex justify-start items-center mb-6">
         <ProgressBarLink href={`/manage-question/${id}?title=${title}`} className="w-[30%] ml-2">
+         <NavTooltip content={"Go back to Manage questions page"}>
           <Button
             variant="ghost"
             className="border border-neutral-300"
@@ -71,6 +73,7 @@ export const QuestionForm = ({ id }) => {
           >
             <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
           </Button>
+          </NavTooltip>
         </ProgressBarLink>
         <h1 className="text-2xl text-center font-bold text-gray-800">
           Create New Question for :{" "}

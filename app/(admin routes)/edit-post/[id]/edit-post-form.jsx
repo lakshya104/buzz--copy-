@@ -31,6 +31,7 @@ import { postFormSchema } from "@/schemas";
 import { CancelEditBtn, DeletePostBtn } from "./delete-post-btn";
 import { ProgressBarLink } from "@/components/progress-bar";
 import { ArrowLeft } from "lucide-react";
+import { NavTooltip } from "@/components/nav-tooltip";
 
 export const EditPostForm = ({ feedItem }) => {
   const router = useRouter();
@@ -65,17 +66,21 @@ export const EditPostForm = ({ feedItem }) => {
     <div className="p-2">
       <div className="bg-white max-w-2xl mt-3 mb-6 flex lg:space-y-0 space-x-5 lg:flex-row items-center justify-between lg:ml-2 lg:z-40">
         <ProgressBarLink href="/dashboard">
-          <Button
-            variant="ghost"
-            className="border border-neutral-300"
-            size="sm"
-          >
-            <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
-          </Button>
+          <NavTooltip content={"Go back to Dashboard page"}>
+            <Button
+              variant="ghost"
+              className="border border-neutral-300"
+              size="sm"
+            >
+              <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
+            </Button>
+          </NavTooltip>
         </ProgressBarLink>
         <h1 className="lg:text-3xl text-xl font-bold text-gray-800">
           Edit Post:{" "}
-          <span className="text-sky-700 text-lg lg:text-xl">{feedItem.title}</span>
+          <span className="text-sky-700 text-lg lg:text-xl">
+            {feedItem.title}
+          </span>
         </h1>
       </div>
 

@@ -3,6 +3,7 @@ import PostCard from "./post-card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, PlusIcon } from "lucide-react";
 import { ProgressBarLink } from "@/components/progress-bar";
+import { NavTooltip } from "@/components/nav-tooltip";
 
 const AdminPanel = async () => {
   const feedItems = await getAllFeedItems();
@@ -13,9 +14,15 @@ const AdminPanel = async () => {
        <div className="flex justify-evenly w-full items-center">
        <div className="bg-white flex items-center justify-between lg:ml-4 lg:z-40 lg:w-[40%]">
           <ProgressBarLink href="/home">
-            <Button variant="ghost" className="border border-neutral-300" size="sm">
-              <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
-            </Button>
+          <NavTooltip content={"Go back to Home page"}>
+          <Button
+            variant="ghost"
+            className="border border-neutral-300"
+            size="sm"
+          >
+            <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
+          </Button>
+          </NavTooltip>
           </ProgressBarLink>
         </div>
         <div className="lg:w-[60%] flex justify-start lg:flex-row flex-col items-center space-y-3 lg:space-y-0 lg:space-x-3">

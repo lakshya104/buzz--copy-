@@ -30,6 +30,7 @@ import { useState } from "react";
 import { postFormSchema } from "@/schemas";
 import { ArrowLeft } from "lucide-react";
 import { ProgressBarLink } from "@/components/progress-bar";
+import { NavTooltip } from "@/components/nav-tooltip";
 
 export const CreatePost = ({ userId }) => {
   const router = useRouter();
@@ -70,15 +71,17 @@ export const CreatePost = ({ userId }) => {
 
   return (
     <div>
-     <div className="bg-white max-w-2xl my-3 flex lg:space-y-0 space-x-5 lg:flex-row items-center justify-evenly lg:ml-2 lg:z-40">
+      <div className="bg-white max-w-2xl my-3 flex lg:space-y-0 space-x-5 lg:flex-row items-center justify-evenly lg:ml-2 lg:z-40">
         <ProgressBarLink href="/dashboard" className="w-[30%] ml-2">
-          <Button
-            variant="ghost"
-            className="border border-neutral-300"
-            size="sm"
-          >
-            <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
-          </Button>
+          <NavTooltip content={"Go back to Dashboard page"}>
+            <Button
+              variant="ghost"
+              className="border border-neutral-300"
+              size="sm"
+            >
+              <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
+            </Button>
+          </NavTooltip>
         </ProgressBarLink>
         <h1 className="lg:text-3xl w-[60%] text-xl font-bold text-gray-800">
           Create Post

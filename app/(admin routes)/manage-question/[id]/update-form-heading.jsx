@@ -3,7 +3,7 @@ import { ProgressBarLink } from "@/components/progress-bar";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, PlusIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import { NavTooltip } from "@/components/nav-tooltip";
 
 const UpdateFormHeading = ({ feedId }) => {
   const searchParams = useSearchParams();
@@ -11,13 +11,19 @@ const UpdateFormHeading = ({ feedId }) => {
 
   return (
     <div className="bg-white flex items-center justify-start lg:ml-4 lg:z-40 w-full">
-      <ProgressBarLink href="/dashboard" className="lg:w-[40%] w-[20%] ml-2">
-        <Button variant="ghost" className="border border-neutral-300" size="sm">
-          <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
-        </Button>
+      <ProgressBarLink href="/dashboard" className="w-[25%] ml-2">
+        <NavTooltip content={"Go back to Dashboard page"}>
+          <Button
+            variant="ghost"
+            className="border border-neutral-300"
+            size="sm"
+          >
+            <ArrowLeft className="h-5 w-5 stroke-2 text-neutral-400" />
+          </Button>
+        </NavTooltip>
       </ProgressBarLink>
       <div>
-        <div className="lg:w-[60%] py-2 my-2 flex justify-center flex-col items-center space-y-3">
+        <div className="lg:w-full py-2 my-2 flex justify-center flex-col lg:flex-row lg:space-x-4 items-center lg:space-y-0 space-y-3">
           <h1 className="text-2xl font-semibold text-center text-gray-700">
             Manage Questions:{" "}
             <span className="text-sky-700 text-xl">{title}</span>
