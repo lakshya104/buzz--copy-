@@ -39,7 +39,7 @@ const Main = ({ ques, id, inc, dec }) => {
       subText: "Get 10% extra off on your next order",
     },
     {
-      option: "No Luck",
+      option: "Hard Luck",
       result: "lost",
       text: "Better luck next time!",
     },
@@ -56,7 +56,7 @@ const Main = ({ ques, id, inc, dec }) => {
       image: { uri: "/amazon.svg" },
       result: "win",
       text: "You won an Amazon coupon",
-      subText: "Get 500 off on your next purchase on Amazon",
+      subText: "Get ₹500 off on your next purchase on Amazon",
     },
     { option: "Oops!", result: "lost", text: "Better luck next time" },
   ];
@@ -201,7 +201,7 @@ const Main = ({ ques, id, inc, dec }) => {
                     "#FFFFFF",
                     "#2a7bad",
                     "#FFFFFF",
-                    "#6929f0",
+                    "#2a7bad",
                   ]}
                   onStopSpinning={() => {
                     setMustSpin(false);
@@ -284,7 +284,7 @@ const Main = ({ ques, id, inc, dec }) => {
                     "#FFFFFF",
                     "#2a7bad",
                     "#FFFFFF",
-                    "#6929f0",
+                    "#2a7bad",
                   ]}
                   onStopSpinning={() => {
                     setMustSpin(false);
