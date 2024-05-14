@@ -36,7 +36,7 @@ const Main = ({ ques, id, inc, dec }) => {
       option: "Zomato",
       color: "sky",
       text: "You won Zomato coupon",
-      subText: "Get 10% extra off on your next order from Zomato",
+      subText: "Get 10% extra off on your next order",
     },
     { option: "Oops!", color: "red", text: "Better luck next time" },
     {
@@ -239,8 +239,8 @@ const Main = ({ ques, id, inc, dec }) => {
               </Dialog>
               <p className="text-sm text-center text-gray-500 py-5">
                 {ques.length !== answeredQuestions.length
-                  ? "Answer all questions to unlock this quiz"
-                  : "Congratulations you can now take part in this Quiz!!"}
+                  ? "Answer all questions to unlock chance to win exciting prizes"
+                  : "Congratulations! You can now take part and win exciting prizes"}
               </p>
             </div>
           </div>
@@ -321,12 +321,13 @@ const Main = ({ ques, id, inc, dec }) => {
             </DialogContent>
           </Dialog>
           <p className="text-sm text-center text-gray-500 py-5">
-            {ques.length !== answeredQuestions.length
-              ? "Answer all questions to unlock this quiz"
-              : "Congratulations you can now take part in this Quiz!!"}
-          </p>
+                {ques.length !== answeredQuestions.length
+                  ? "Answer all questions to unlock chance to win exciting prizes"
+                  : "Congratulations! You can now take part and win exciting prizes"}
+              </p>
         </div>
       </StickyWrapper>
+      
     </div>
   );
 };
