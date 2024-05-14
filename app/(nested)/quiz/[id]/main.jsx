@@ -13,12 +13,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Ban, Check } from "lucide-react";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 const Main = ({ ques, id, inc, dec }) => {
   const [answers, setAnswers] = useState({});
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [disable, setDisable] = useState(false);
 
   const handleClick = (questionId, answer) => {
     if (answeredQuestions.includes(questionId)) {
@@ -31,14 +31,27 @@ const Main = ({ ques, id, inc, dec }) => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const data = [
+    { option: "No Luck", color: "red", text: "Better luck next time!" },
+    {
+      option: "Zomato",
+      color: "sky",
+      text: "You won Zomato coupon",
+      subText: "Get 10% extra off on your next order from Zomato",
+    },
+    { option: "Oops!", color: "red", text: "Better luck next time" },
     {
       option: "Amazon",
+      color: "sky",
+      text: "You won an Amazon coupon",
+      subText: "Get 500 off on your next purchase on Amazon",
     },
-    { option: "Zomato" },
-    { option: "Flipkart" },
-    { option: "GoIbibo" },
-    { option: "Samsung" },
-    { option: "Myntra" },
+    { option: "Oops!", color: "red", text: "Better luck next time" },
+    {
+      option: "Samsung",
+      color: "sky",
+      text: "You won a Samsung coupon",
+      subText: "Get 15% off on your next Samsung purchase",
+    },
   ];
 
   const handleSpinClick = () => {
@@ -47,6 +60,7 @@ const Main = ({ ques, id, inc, dec }) => {
       setPrizeNumber(newPrizeNumber);
       setMustSpin(true);
       console.log(newPrizeNumber);
+      setDisable(true);
     }
   };
 
@@ -166,29 +180,60 @@ const Main = ({ ques, id, inc, dec }) => {
                       mustStartSpinning={mustSpin}
                       prizeNumber={prizeNumber}
                       data={data}
+                      outerBorderColor={["#f2f2f2"]}
+                      outerBorderWidth={[25]}
+                      innerBorderColor={["#f2f2f2"]}
+                      radiusLineColor={["#dedede"]}
+                      radiusLineWidth={[10]}
+                      textColors={["#ffffff"]}
+                      fontSize={[20]}
+                      perpendicularText={[true]}
+                      backgroundColors={[
+                        "#F22B35",
+                        "#F99533",
+                        "#24CA69",
+                        "#514E50",
+                        "#46AEFF",
+                        "#9145B7",
+                      ]}
                       onStopSpinning={() => {
                         setMustSpin(false);
                       }}
-                      backgroundColors={[
-                        "#5a67d8",
-                        "#4299e1",
-                        "#48bb78",
-                        "#f56565",
-                        "#ecc94b",
-                        "#9f7aea",
-                      ]}
-                      outerBorderColor="black"
-                      innerBorderColor="white"
-                      radiusLineColor="white"
-                      textColors={["#ffffff"]}
                     />
                     <Button
                       variant="primary"
                       className="px-8"
                       onClick={handleSpinClick}
+                      disabled={disable}
                     >
                       SPIN
                     </Button>
+                    <div className="p-2 h-12 w-full">
+                      {!mustSpin && disable && (
+                        <p className="text-center text-xs font-medium">
+                          {data[prizeNumber].color === "red" ? (
+                            <span className="font-semibold text-xs text-red-800">
+                              {data[prizeNumber].text}
+                            </span>
+                          ) : (
+                            <>
+                              <span className="font-semibold text-xs text-sky-800">
+                                Congratulations!{" "}
+                              </span>
+                              You won{" "}
+                              <span className="font-semibold text-xs text-sky-800">
+                                {data[prizeNumber].option}
+                              </span>{" "}
+                              Coupon
+                              <br />
+                              <span className="font-semibold text-xs text-sky-800">
+                                {data[prizeNumber].subText}
+                              </span>
+                            </>
+                          )}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </DialogContent>
               </Dialog>
@@ -218,29 +263,60 @@ const Main = ({ ques, id, inc, dec }) => {
                   mustStartSpinning={mustSpin}
                   prizeNumber={prizeNumber}
                   data={data}
+                  outerBorderColor={["#f2f2f2"]}
+                  outerBorderWidth={[25]}
+                  innerBorderColor={["#f2f2f2"]}
+                  radiusLineColor={["#dedede"]}
+                  radiusLineWidth={[10]}
+                  textColors={["#ffffff"]}
+                  fontSize={[20]}
+                  perpendicularText={[true]}
+                  backgroundColors={[
+                    "#F22B35",
+                    "#F99533",
+                    "#24CA69",
+                    "#514E50",
+                    "#46AEFF",
+                    "#9145B7",
+                  ]}
                   onStopSpinning={() => {
                     setMustSpin(false);
                   }}
-                  backgroundColors={[
-                    "#5a67d8",
-                    "#4299e1",
-                    "#48bb78",
-                    "#f56565",
-                    "#ecc94b",
-                    "#9f7aea",
-                  ]}
-                  outerBorderColor="black"
-                  innerBorderColor="white"
-                  radiusLineColor="white"
-                  textColors={["#ffffff"]}
                 />
                 <Button
                   variant="primary"
                   className="px-8"
                   onClick={handleSpinClick}
+                  disabled={disable}
                 >
                   SPIN
                 </Button>
+                <div className="p-2 h-12 w-full">
+                  {!mustSpin && disable && (
+                    <p className="text-center font-medium">
+                      {data[prizeNumber].color === "red" ? (
+                        <span className="font-semibold text-lg text-red-800">
+                          {data[prizeNumber].text}
+                        </span>
+                      ) : (
+                        <>
+                          <span className="font-semibold text-lg text-sky-800">
+                            Congratulations!{" "}
+                          </span>
+                          You won{" "}
+                          <span className="font-semibold text-lg text-sky-800">
+                            {data[prizeNumber].option}
+                          </span>{" "}
+                          Coupon
+                          <br />
+                          <span className="font-semibold text-lg text-sky-800">
+                            {data[prizeNumber].subText}
+                          </span>
+                        </>
+                      )}
+                    </p>
+                  )}
+                </div>
               </div>
             </DialogContent>
           </Dialog>
