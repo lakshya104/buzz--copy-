@@ -31,27 +31,34 @@ const Main = ({ ques, id, inc, dec }) => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const data = [
-    { option: "No Luck", color: "red", text: "Better luck next time!" },
     {
       option: "Zomato",
-      color: "sky",
+      image: { uri: "/zomato.svg" },
+      result: "win",
       text: "You won Zomato coupon",
       subText: "Get 10% extra off on your next order",
     },
-    { option: "Oops!", color: "red", text: "Better luck next time" },
+    {
+      option: "No Luck",
+      result: "lost",
+      text: "Better luck next time!",
+    },
+    {
+      option: "Flipkart",
+      image: { uri: "/flipkart.svg" },
+      result: "win",
+      text: "You won a Flipkart coupon",
+      subText: "Get 15% off on your next Flipkart purchase",
+    },
+    { option: "Oops!", result: "lost", text: "Better luck next time" },
     {
       option: "Amazon",
-      color: "sky",
+      image: { uri: "/amazon.svg" },
+      result: "win",
       text: "You won an Amazon coupon",
       subText: "Get 500 off on your next purchase on Amazon",
     },
-    { option: "Oops!", color: "red", text: "Better luck next time" },
-    {
-      option: "Samsung",
-      color: "sky",
-      text: "You won a Samsung coupon",
-      subText: "Get 15% off on your next Samsung purchase",
-    },
+    { option: "Oops!", result: "lost", text: "Better luck next time" },
   ];
 
   const handleSpinClick = () => {
@@ -176,30 +183,30 @@ const Main = ({ ques, id, inc, dec }) => {
                 </DialogTrigger>
                 <DialogContent className="shadow-inner w-full py-8 rounded- px-4 lg:px-12 z-50">
                   <div className="flex items-center w-full justify-center flex-col space-y-4">
-                    <Wheel
-                      mustStartSpinning={mustSpin}
-                      prizeNumber={prizeNumber}
-                      data={data}
-                      outerBorderColor={["#f2f2f2"]}
-                      outerBorderWidth={[25]}
-                      innerBorderColor={["#f2f2f2"]}
-                      radiusLineColor={["#dedede"]}
-                      radiusLineWidth={[10]}
-                      textColors={["#ffffff"]}
-                      fontSize={[20]}
-                      perpendicularText={[true]}
-                      backgroundColors={[
-                        "#F22B35",
-                        "#F99533",
-                        "#24CA69",
-                        "#514E50",
-                        "#46AEFF",
-                        "#9145B7",
-                      ]}
-                      onStopSpinning={() => {
-                        setMustSpin(false);
-                      }}
-                    />
+                  <Wheel
+                  mustStartSpinning={mustSpin}
+                  prizeNumber={prizeNumber}
+                  data={data}
+                  outerBorderColor={["#f2f2f2"]}
+                  outerBorderWidth={[15]}
+                  innerBorderColor={["#f2f2f2"]}
+                  radiusLineColor={["#f2f2f2"]}
+                  radiusLineWidth={[5]}
+                  textColors={["#ffffff"]}
+                  fontSize={[20]}
+                  perpendicularText={[true]}
+                  backgroundColors={[
+                    "#FFFFFF",
+                    "#00080d",
+                    "#FFFFFF",
+                    "#2a7bad",
+                    "#FFFFFF",
+                    "#6929f0",
+                  ]}
+                  onStopSpinning={() => {
+                    setMustSpin(false);
+                  }}
+                />
                     <Button
                       variant="primary"
                       className="px-8"
@@ -211,7 +218,7 @@ const Main = ({ ques, id, inc, dec }) => {
                     <div className="p-2 h-12 w-full">
                       {!mustSpin && disable && (
                         <p className="text-center text-xs font-medium">
-                          {data[prizeNumber].color === "red" ? (
+                        {data[prizeNumber].result === "lost" ? (
                             <span className="font-semibold text-xs text-red-800">
                               {data[prizeNumber].text}
                             </span>
@@ -264,20 +271,20 @@ const Main = ({ ques, id, inc, dec }) => {
                   prizeNumber={prizeNumber}
                   data={data}
                   outerBorderColor={["#f2f2f2"]}
-                  outerBorderWidth={[25]}
+                  outerBorderWidth={[15]}
                   innerBorderColor={["#f2f2f2"]}
-                  radiusLineColor={["#dedede"]}
-                  radiusLineWidth={[10]}
+                  radiusLineColor={["#f2f2f2"]}
+                  radiusLineWidth={[5]}
                   textColors={["#ffffff"]}
                   fontSize={[20]}
                   perpendicularText={[true]}
                   backgroundColors={[
-                    "#F22B35",
-                    "#F99533",
-                    "#24CA69",
-                    "#514E50",
-                    "#46AEFF",
-                    "#9145B7",
+                    "#FFFFFF",
+                    "#00080d",
+                    "#FFFFFF",
+                    "#2a7bad",
+                    "#FFFFFF",
+                    "#6929f0",
                   ]}
                   onStopSpinning={() => {
                     setMustSpin(false);
@@ -294,7 +301,7 @@ const Main = ({ ques, id, inc, dec }) => {
                 <div className="p-2 h-12 w-full">
                   {!mustSpin && disable && (
                     <p className="text-center font-medium">
-                      {data[prizeNumber].color === "red" ? (
+                      {data[prizeNumber].result === "lost" ? (
                         <span className="font-semibold text-lg text-red-800">
                           {data[prizeNumber].text}
                         </span>
@@ -321,13 +328,12 @@ const Main = ({ ques, id, inc, dec }) => {
             </DialogContent>
           </Dialog>
           <p className="text-sm text-center text-gray-500 py-5">
-                {ques.length !== answeredQuestions.length
-                  ? "Answer all questions to unlock chance to win exciting prizes"
-                  : "Congratulations! You can now take part and win exciting prizes"}
-              </p>
+            {ques.length !== answeredQuestions.length
+              ? "Answer all questions to unlock chance to win exciting prizes"
+              : "Congratulations! You can now take part and win exciting prizes"}
+          </p>
         </div>
       </StickyWrapper>
-      
     </div>
   );
 };
