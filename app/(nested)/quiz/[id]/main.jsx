@@ -89,6 +89,10 @@ const Main = ({ ques, id, inc, dec }) => {
     },
   ];
 
+  const PointerProps = {
+    src: "/pointer.svg",
+  };
+
   const handleSpinClick = () => {
     if (!mustSpin) {
       const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -211,21 +215,21 @@ const Main = ({ ques, id, inc, dec }) => {
                 </DialogTrigger>
                 <DialogContent className="shadow-inner w-full py-8 rounded- px-4 lg:px-12 z-50">
                   <div className="flex items-center w-full justify-center flex-col space-y-4">
-                  <Wheel
-                  mustStartSpinning={mustSpin}
-                  prizeNumber={prizeNumber}
-                  data={data}
-                  outerBorderColor={["#f2f2f2"]}
-                  outerBorderWidth={[15]}
-                  innerBorderColor={["#f2f2f2"]}
-                  radiusLineColor={["#f2f2f2"]}
-                  radiusLineWidth={[5]}
-                  textColors={["#ffffff"]}
-                  fontSize={[20]}
-                  onStopSpinning={() => {
-                    setMustSpin(false);
-                  }}
-                />
+                    <Wheel
+                      mustStartSpinning={mustSpin}
+                      prizeNumber={prizeNumber}
+                      data={data}
+                      outerBorderColor={["#f2f2f2"]}
+                      outerBorderWidth={[15]}
+                      innerBorderColor={["#f2f2f2"]}
+                      radiusLineColor={["#f2f2f2"]}
+                      radiusLineWidth={[5]}
+                      textColors={["#ffffff"]}
+                      fontSize={[20]}
+                      onStopSpinning={() => {
+                        setMustSpin(false);
+                      }}
+                    />
                     <Button
                       variant="primary"
                       className="px-8"
@@ -296,6 +300,7 @@ const Main = ({ ques, id, inc, dec }) => {
                   radiusLineWidth={[5]}
                   textColors={["#ffffff"]}
                   fontSize={[20]}
+                  pointerProps={PointerProps}
                   onStopSpinning={() => {
                     setMustSpin(false);
                   }}
