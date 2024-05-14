@@ -33,32 +33,60 @@ const Main = ({ ques, id, inc, dec }) => {
   const data = [
     {
       option: "Zomato",
-      image: { uri: "/zomato.svg" },
+      image: { uri: "/zomato.svg", landscape: true },
       result: "win",
+      style: { backgroundColor: "white", textColor: "black" },
       text: "You won Zomato coupon",
       subText: "Get 10% extra off on your next order",
     },
     {
       option: "Hard Luck",
       result: "lost",
+      style: { backgroundColor: "#2a7bad", textColor: "white" },
       text: "Better luck next time!",
     },
     {
       option: "Flipkart",
-      image: { uri: "/flipkart.svg" },
+      image: { uri: "/flipkart.svg", landscape: true },
+      style: { backgroundColor: "white", textColor: "black" },
       result: "win",
       text: "You won a Flipkart coupon",
       subText: "Get 15% off on your next Flipkart purchase",
     },
-    { option: "Oops!", result: "lost", text: "Better luck next time" },
+    {
+      option: "Oops!",
+      result: "lost",
+      style: { backgroundColor: "#2a7bad", textColor: "white" },
+      text: "Better luck next time",
+    },
     {
       option: "Amazon",
-      image: { uri: "/amazon.svg" },
+      image: { uri: "/amazon.svg", landscape: true },
+      style: { backgroundColor: "white", textColor: "black" },
       result: "win",
       text: "You won an Amazon coupon",
       subText: "Get ₹500 off on your next purchase on Amazon",
     },
-    { option: "Oops!", result: "lost", text: "Better luck next time" },
+    {
+      option: "Oops!",
+      result: "lost",
+      style: { backgroundColor: "#2a7bad", textColor: "white" },
+      text: "Better luck next time",
+    },
+    {
+      option: "Amazon",
+      image: { uri: "/amazon.svg", landscape: true },
+      style: { backgroundColor: "white", textColor: "black" },
+      result: "win",
+      text: "You won an Amazon coupon",
+      subText: "Get ₹500 off on your next purchase on Amazon",
+    },
+    {
+      option: "Oops!",
+      result: "lost",
+      style: { backgroundColor: "#2a7bad", textColor: "white" },
+      text: "Better luck next time",
+    },
   ];
 
   const handleSpinClick = () => {
@@ -194,15 +222,6 @@ const Main = ({ ques, id, inc, dec }) => {
                   radiusLineWidth={[5]}
                   textColors={["#ffffff"]}
                   fontSize={[20]}
-                  perpendicularText={[true]}
-                  backgroundColors={[
-                    "#FFFFFF",
-                    "#00080d",
-                    "#FFFFFF",
-                    "#2a7bad",
-                    "#FFFFFF",
-                    "#2a7bad",
-                  ]}
                   onStopSpinning={() => {
                     setMustSpin(false);
                   }}
@@ -218,7 +237,7 @@ const Main = ({ ques, id, inc, dec }) => {
                     <div className="p-2 h-12 w-full">
                       {!mustSpin && disable && (
                         <p className="text-center text-xs font-medium">
-                        {data[prizeNumber].result === "lost" ? (
+                          {data[prizeNumber].result === "lost" ? (
                             <span className="font-semibold text-xs text-red-800">
                               {data[prizeNumber].text}
                             </span>
@@ -277,15 +296,6 @@ const Main = ({ ques, id, inc, dec }) => {
                   radiusLineWidth={[5]}
                   textColors={["#ffffff"]}
                   fontSize={[20]}
-                  perpendicularText={[true]}
-                  backgroundColors={[
-                    "#FFFFFF",
-                    "#00080d",
-                    "#FFFFFF",
-                    "#2a7bad",
-                    "#FFFFFF",
-                    "#2a7bad",
-                  ]}
                   onStopSpinning={() => {
                     setMustSpin(false);
                   }}
