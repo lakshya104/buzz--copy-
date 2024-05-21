@@ -7,9 +7,12 @@ import {
 } from "@/actions/redeem";
 
 export default async function Page({ params }) {
-  const data = await fetchFeedItemByIdWithQuestions(params.id);
+  const { id } = params;
+  const [data, userId] = await Promise.all([
+    fetchFeedItemByIdWithQuestions(id),
+    getUserId(),
+  ]);
   const ques = data.questions;
-  const id = await getUserId();
 
   const pointIncrement = async () => {
     "use server";
@@ -21,5 +24,7 @@ export default async function Page({ params }) {
     await pointDecrease();
   };
 
-  return <Main id={id} ques={ques} inc={pointIncrement} dec={pointDecrement} />;
+  return (
+    <Main id={userId} ques={ques} inc={pointIncrement} dec={pointDecrement} />
+  );
 }

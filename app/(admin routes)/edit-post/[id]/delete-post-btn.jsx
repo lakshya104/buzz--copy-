@@ -2,11 +2,9 @@ import { deleteFeedItem } from "@/actions/redeem";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/components/ui/use-toast";
-import { CrossIcon, CrosshairIcon, DeleteIcon, Trash2 } from "lucide-react";
+import { DeleteIcon, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { FaBackward, FaCut } from "react-icons/fa";
-import { FcCancel } from "react-icons/fc";
 
 export const DeletePostBtn = ({ id }) => {
   const router = useRouter();

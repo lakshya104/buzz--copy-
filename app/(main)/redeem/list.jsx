@@ -1,6 +1,8 @@
+import { getUserPoints } from "@/actions/redeem";
 import Card from "./card";
 
-const List = ({ rewards, userEmail, points }) => {
+const List = async ({ rewards, userEmail }) => {
+  const points = await getUserPoints(userEmail);
 
   return (
     <>

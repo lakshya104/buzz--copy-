@@ -6,13 +6,11 @@ import {
 } from "@/components/ui/hover-card";
 import { Skeleton } from "./ui/skeleton";
 import { auth } from "@/auth";
-import { getUserPoints } from "@/actions/redeem";
 import SignOutButton from "./auth/signout-button";
 import { ProgressBarLink } from "./progress-bar";
 
 export async function ProfileHeader() {
   const session = await auth();
-  const points = await getUserPoints(session.user.email);
   return (
     <HoverCard>
       <HoverCardTrigger asChild>

@@ -5,9 +5,10 @@ import RefreshBtn from "@/components/server-refresh-btn";
 import { auth } from "@/auth";
 
 const Leaderboard = async () => {
-  const pointBoard = await getLeaderboard();
-  const session = await auth();
-
+  const [pointBoardResult, session] = await Promise.allSettled([
+    getLeaderboard(),
+    auth(),
+  ]);
   return (
     <div className="h-full max-w-[912px] px-3 mx-auto">
       <div className="flex items-center justify-center space-x-4">
@@ -17,7 +18,10 @@ const Leaderboard = async () => {
           subTitle="Leaderboard table was refreshed successfully!"
         />
       </div>
-      <PointsTable pointBoard={pointBoard} email={session.user.email} />
+      <PointsTable
+        pointBoard={pointBoardResult.value}
+        email={session.value.user.email}
+      />
     </div>
   );
 };

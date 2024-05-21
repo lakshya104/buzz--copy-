@@ -1,21 +1,19 @@
-import { auth } from "@/auth";
+import { getUserByEmailAction } from "@/actions/redeem";
 import { ProgressBarLink } from "@/components/progress-bar";
 import { Button } from "@/components/ui/button";
-import { getUserByEmail } from "@/data/user";
 import Image from "next/image";
 import React from "react";
 import { FcRight } from "react-icons/fc";
 
 const Profile = async () => {
-  const session = await auth();
-  const user = await getUserByEmail(session.user.email);
+  const user = await getUserByEmailAction();
   return (
     <div className="mx-auto px-8 py-3 bg-white shadow-lg rounded-lg font-inter">
       <div className="text-center">
         <div className="mx-auto mb-4 mt-6 w-32 h-32 md:w-48 md:h-48 relative border-4 border-white rounded-full">
           <Image
             className="rounded-full"
-            src={`https://picsum.photos/200`}
+            src="/profile2.svg"
             alt="Profile"
             fill
             sizes="190px"

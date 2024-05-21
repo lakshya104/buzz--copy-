@@ -1,13 +1,14 @@
 import { getRewards } from "@/data/queries";
 import List from "./list";
 import { auth } from "@/auth";
-import { getUserPoints } from "@/actions/redeem";
 import RefreshBtn from "@/components/server-refresh-btn";
 
 const Redeem = async () => {
-  const session = await auth();
-  const rewards = await getRewards();
-  const points = await getUserPoints(session.user.email);
+  const [sessionResult, rewardsResult] = await Promise.allSettled([
+    auth(),
+    getRewards(),
+  ]);
+  
   return (
     <div className="h-full max-w-[912px] px-3 mx-auto">
       <div className="flex justify-center items-center space-x-3">
@@ -15,7 +16,7 @@ const Redeem = async () => {
         <RefreshBtn title="Rewards Refreshed"
           subTitle="Rewards were refreshed successfully!" />
       </div>
-      <List rewards={rewards} userEmail={session.user.email} points={points} />
+      <List rewards={rewardsResult.value} userEmail={sessionResult.value.user.email}/>
     </div>
   );
 };

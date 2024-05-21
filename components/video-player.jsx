@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ProgressBarLink } from "./progress-bar";
 import { Button } from "./ui/button";
 
-const VideoPlayer = ({ title, videosrc, description, id }) => {
+const VideoPlayer = ({ title, url, description, id }) => {
   const [hasWindow, setHasWindow] = useState(false);
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -22,7 +22,7 @@ const VideoPlayer = ({ title, videosrc, description, id }) => {
       ) : (
         <ReactPlayer
           width="90%"
-          url={videosrc}
+          url={url}
           playing={true}
           controls={true}
           light={"https://buzz-copy.vercel.app/watch.svg"}
@@ -32,7 +32,7 @@ const VideoPlayer = ({ title, videosrc, description, id }) => {
           className="bg-slate-950 p-1 lg:p-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] "
         />
       )}
-      <source src={videosrc} type="video/mp4" />
+      <source src={url} type="video/mp4" />
       <p className="text-gray-600 text-base lg:text-lg p-4 mb-6 text-justify">
         {description}
       </p>

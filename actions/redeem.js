@@ -23,6 +23,25 @@ export const redeemRewardForUser = async (rewardId) => {
   }
 };
 
+export const getUserByEmailAction = async (email) => {
+  const session = await auth();
+  const userEmail = session.user.email;
+  try {
+    const user = await db.user.findUnique({
+      where: {
+        email: userEmail,
+      },
+      include: {
+        redeemedRewards : true,
+        answeredQuestions: true
+      },
+    });
+    return user;
+  } catch {
+    null;
+  }
+};
+
 export const getUserId = async () => {
   const session = await auth();
   const userEmail = session.user.email;
