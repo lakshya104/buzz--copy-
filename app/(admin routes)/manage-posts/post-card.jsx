@@ -1,31 +1,48 @@
 import { ProgressBarLink } from "@/components/progress-bar";
 import { Button } from "@/components/ui/button";
 
-const PostCard = ({ title, type, id }) => {
+const PostCard = ({ title, type, id, questionCount }) => {
   return (
-    <div className="lg:max-w-[98%] mx-auto bg-white rounded-lg overflow-hidden">
-        <div className="flex flex-col lg:flex-row space-y-2 justify-between items-center my-3 border-2 p-5">
-          <h2 className="text-lg md:text-xl font-semibold text-sky-800 mb-2 w-full lg:max-w-[35%]">
-            <span className="text-slate-800 mr-1"> Title:</span> {title}
-          </h2>
-          <div className="lg:w-[55%] w-full flex justify-between items-center">
-            <span className="px-3 py-1 bg-sky-100 text-sky-800 text-xs font-bold rounded-full">
-              {type}
-            </span>
-           <div className="flex justify-center lg:flex-row flex-col space-y-5 lg:space-y-0 items-center lg:space-x-5">
-           <ProgressBarLink href={`manage-posts/edit-post/${id}?title=${title}`}>
-              <Button variant="primary" className="w-[190px]">
-               Edit Post
-              </Button>
-            </ProgressBarLink>
-            <ProgressBarLink href={`manage-posts/manage-question/${id}?title=${title}`}>
-              <Button variant="superOutline" className="w-[190px] border border-indigo-500 border-b-4">
-                Manage Questions
-              </Button>
-            </ProgressBarLink>
-           </div>
-          </div>
+    <div className="max-w-sm mx-auto bg-slate-50 rounded-lg overflow-hidden border border-slate-300 shadow-lg my-5">
+      <div className="p-5">
+        <h2 className="text-lg md:text-xl font-semibold text-black">
+          <span className=" mr-1">Title:</span> {title}
+        </h2>
+
+        <div className="flex flex-col mt-4">
+          <span className="px-3 py-1 bg-slate-200 text-black text-sm font-medium rounded-full mt-2">
+            <span className="text-black mr-1">Type:</span> {type}
+          </span>
+          <span className="px-3 py-1 bg-slate-200 text-black text-sm font-medium rounded-full mt-2">
+            <span className="text-black mr-1">Currently Active:</span> True
+          </span>
+          <span className="px-3 py-1 bg-slate-200 text-black text-sm font-medium rounded-full mt-2">
+            <span className="text-black mr-1">Total Questions:</span> {questionCount}
+          </span>
         </div>
+
+        <div className="flex flex-col space-y-2 items-center mt-4">
+          <ProgressBarLink
+            href={`manage-posts/edit-post/${id}?title=${title}`}
+            className="w-full"
+          >
+            <Button variant="default" className="w-full text-black">
+              Edit Post
+            </Button>
+          </ProgressBarLink>
+          <ProgressBarLink
+            href={`manage-posts/manage-question/${id}?title=${title}`}
+            className="w-full"
+          >
+            <Button
+              variant="default"
+              className="w-full border text-black border-black border-b-4"
+            >
+              Manage Questions
+            </Button>
+          </ProgressBarLink>
+        </div>
+      </div>
     </div>
   );
 };

@@ -236,7 +236,11 @@ export const hasUserAnsweredQuestion = async (userId, questionId) => {
 
 export const getAllFeedItems = async () => {
   try {
-    const feedItems = await db.feedItem.findMany();
+    const feedItems = await db.feedItem.findMany({
+      include:{
+        questions:true
+      }
+    });
     return feedItems;
   } catch (error) {
     console.error("Error fetching feed items:", error);
