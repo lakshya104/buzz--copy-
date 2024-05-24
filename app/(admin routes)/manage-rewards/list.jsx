@@ -5,7 +5,7 @@ const List = async () => {
   const rewards = await getRewards()
 
   return (
-      <div className="py-6 grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="py-6 grid grid-cols-1 px-6 lg:grid-cols-3 gap-4">
         {rewards.map((reward) => (
           <Card
             key={reward.id}

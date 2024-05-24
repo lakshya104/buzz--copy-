@@ -1,53 +1,38 @@
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import UpdateRewardBtn from "./update-reward-btn";
 
 const Card = ({ name, image, description, text, active, code, id }) => {
   return (
-    <div
-      className={
-        "flex flex-col justify-between items-start h-full border-2 rounded-xl border-b-4 cursor-pointer p-3 pb-4 min-h-[390px] min-w-[170px]"
-      }
-    >
-      <div className="min-h-[26px] w-full flex items-start justify-center">
-        <h2 className="font-bold text-sm lg:text-base text-neutral-700">
+    <div className="flex flex-col justify-between items-start bg-white h-full border border-gray-300 rounded-lg shadow-lg cursor-pointer p-4 min-h-[390px] min-w-[170px] hover:shadow-xl transition-shadow duration-300 ease-in-out">
+      <div className="w-full">
+        <h2 className="font-semibold text-lg text-neutral-700 mb-2">
           Name: <span className="text-sky-700">{name}</span>
         </h2>
+        <Image
+          src={image}
+          width={100}
+          height={100}
+          alt={name}
+          className="object-fit w-full rounded-lg max-h-36 mb-2"
+        />
       </div>
-      <p className="text-sky-700 text-xs lg:text-sm lg:font-semibold mt-3">
-        <span className="text-slate-700 border-b border-black mr-1">
-          {" "}
-          Text:{" "}
-        </span>
-        {text}
-      </p>
-      <p className="text-sky-700 text-xs lg:text-sm lg:font-semibold mt-3">
-        <span className="text-slate-700 border-b border-black mr-1">
-          {" "}
-          Active:{" "}
-        </span>
-        {String(active)}
-      </p>
-      <p className="text-sky-700 text-xs lg:text-sm lg:font-semibold mt-3">
-        <span className="text-slate-700 border-b border-black mr-1">
-          {" "}
-          Image Link:{" "}
-        </span>
-        {image}
-      </p>
-      <p className="text-sky-700 text-xs lg:text-sm lg:font-semibold mt-3">
-        <span className="text-slate-700 border-b border-black mr-1">
-          Code:
-        </span>
-        {code}
-      </p>
-      <p className="text-slate-900 text-xs lg:font-semibold mt-3">
-        <span className="text-slate-700 border-b border-black mr-1">
-          {" "}
-          Description:
-        </span>{" "}
-        {description}
-      </p>
-      <UpdateRewardBtn id={id} name={name}/>
+      <div className="space-y-3 flex-grow">
+        <p className="text-neutral-800">
+          <span className="font-semibold">Text:</span> {text}
+        </p>
+        <p className="text-neutral-800">
+          <span className="font-semibold">Active:</span> {String(active)}
+        </p>
+        <p className="text-neutral-800">
+          <span className="font-semibold">Code:</span> {code}
+        </p>
+        <p className="text-neutral-800">
+          <span className="font-semibold">Description:</span> {description}
+        </p>
+      </div>
+      <div className="w-full mt-4">
+        <UpdateRewardBtn id={id} name={name} />
+      </div>
     </div>
   );
 };

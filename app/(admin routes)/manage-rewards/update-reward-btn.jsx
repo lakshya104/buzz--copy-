@@ -9,7 +9,7 @@ import { ProgressBarLink } from "@/components/progress-bar";
 
 const UpdateRewardBtn = ({ id, name }) => {
   return (
-    <div className="w-full flex-col flex justify-center items-center lg:flex-row lg:space-x-6 mt-2">
+    <div className="w-full flex justify-center items-center lg:space-x-6 mt-2">
       {" "}
      <ProgressBarLink href={`/manage-rewards/edit-reward/${id}?name=${name}`}>
      <Button variant="superOutline" className="w-24 border border-indigo-500">
