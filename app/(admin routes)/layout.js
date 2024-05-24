@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
-import { Header } from "@/components/header";
+import { AdminMobileHeader } from "@/components/admin-mobile-header";
+import { AdminSidebar } from "@/components/admin-sidebar";
 import { redirect } from "next/navigation";
 
 const AdminLayout = async ({ children }) => {
@@ -7,19 +8,17 @@ const AdminLayout = async ({ children }) => {
   if (session?.user.role === "USER") {
     redirect("/home");
   }
-  
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <div className="min-h-screen bg-gray-100 p-2 lg:p-8">
-        <h1 className="lg:text-4xl text-2xl font-bold text-sky-800 mb-4">
-          Admin Panel <span className="text-base">(Dashboard)</span>
-        </h1>
-        <div className="bg-white shadow-md rounded-lg p-1 lg:p-6">
+    <>
+      <AdminMobileHeader />
+      <AdminSidebar className="hidden lg:flex" />
+      <main className="lg:pl-[256px] h-full pt-[50px]">
+        <div className="max-w-screen-xl mx-auto pt-6 h-full">
           {children}
         </div>
-      </div>
-    </div>
+      </main>
+    </>
   );
 };
 

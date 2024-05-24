@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import React, { useState } from "react";
-import { redeemRewardForUser } from "@/actions/redeem";
+import { redeemRewardForUser } from "@/actions/server-utils";
 
 const RewardsBtn = ({ disabled, id }) => {
   const [active, setActive] = useState(false);

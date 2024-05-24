@@ -1,5 +1,5 @@
 "use client";
-import { getLeaderboard } from "@/actions/redeem";
+import { getLeaderboard } from "@/actions/server-utils";
 import {
   Table,
   TableBody,

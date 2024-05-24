@@ -7,7 +7,7 @@ const Card = ({ id, name, image, disabled, description }) => {
   return (
     <div
       className={cn(
-        "flex flex-col justify-between items-center h-full border-2 rounded-xl border-b-4 hover:bg-sky-400/5 cursor-pointer active:border-b-2 p-3 pb-6 min-h-[300px] min-w-[170px]",
+        "flex flex-col justify-between items-center h-full border-2 rounded-xl border-b-4 hover:bg-sky-400/5 cursor-pointer active:border-b-2 p-3 pb-6 min-h-[370px] min-w-[170px]",
         disabled && "pointer-events-none opacity-50"
       )}
     >

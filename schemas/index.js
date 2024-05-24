@@ -115,3 +115,29 @@ export const postFormSchema = z
       path: ["question"],
     }
   );
+
+
+ export const rewardFormSchema = z.object({
+    name: z.string().min(4, {
+      message: "name must be at least 4 characters.",
+    }),
+    text: z.string().min(4, {
+      message: "name must be at least 4 characters.",
+    }),
+    description: z.string().min(70, {
+      message: "description must be at least 70 characters.",
+    }),
+    image: z
+      .string()
+      .min(5, { message: "Image URL must be at least 5 characters." })
+      .regex(/^(\/|https?:\/\/)/, {
+        message:
+          "Image URL must start with a leading slash '/' or 'http://' or 'https://'.",
+      }),
+    couponCode: z.string().min(5, {
+      message: "coupon code is required.",
+    }),
+    isActive: z.string().min(3, {
+      message: "reward status is required.",
+    }),
+  });

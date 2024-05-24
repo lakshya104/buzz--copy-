@@ -2,7 +2,7 @@ import { FeedWrapper } from "@/components/feed-wrapper";
 import { StickyWrapper } from "@/components/sticky-wrapper";
 import { Header } from "./header";
 import VideoPlayer from "@/components/video-player";
-import { getAllFeedItems } from "@/actions/redeem";
+import { getAllFeedItems } from "@/actions/server-utils";
 import UserCard from "@/components/user-card";
 import BlogPost from "./blog-post";
 import ImagePost from "./image-post";

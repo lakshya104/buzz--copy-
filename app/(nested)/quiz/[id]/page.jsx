@@ -1,10 +1,8 @@
+import { getUserId } from "@/data/queries";
 import Main from "./main";
 import {
   fetchFeedItemByIdWithQuestions,
-  getUserId,
-  pointDecrease,
-  pointIncrease,
-} from "@/actions/redeem";
+} from "@/actions/server-utils";
 
 export default async function Page({ params }) {
   const { id } = params;
@@ -12,19 +10,9 @@ export default async function Page({ params }) {
     fetchFeedItemByIdWithQuestions(id),
     getUserId(),
   ]);
-  const ques = data.questions;
 
-  const pointIncrement = async () => {
-    "use server";
-    await pointIncrease();
-  };
-
-  const pointDecrement = async () => {
-    "use server";
-    await pointDecrease();
-  };
-
+ 
   return (
-    <Main id={userId} ques={ques} inc={pointIncrement} dec={pointDecrement} />
+    <Main id={userId} ques={data.questions} />
   );
 }

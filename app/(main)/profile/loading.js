@@ -1,17 +1,14 @@
-import { getUserByEmailAction } from "@/actions/server-utils";
-import { ProgressBarLink } from "@/components/progress-bar";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import React from "react";
-import { FcRight } from "react-icons/fc";
 
-const Profile = async () => {
-  const user = await getUserByEmailAction();
+const loading = () => {
   return (
     <div className="mx-auto px-8 py-3 bg-white shadow-lg rounded-lg font-inter">
       <div className="text-center">
         <div className="mx-auto mb-4 mt-6 w-32 h-32 md:w-48 md:h-48 relative border-4 border-white rounded-full">
-          <Image
+        <Image
             className="rounded-full"
             src="/profile2.svg"
             alt="Profile"
@@ -19,38 +16,33 @@ const Profile = async () => {
             sizes="190px"
           />
         </div>
-        <h1 className="text-3xl md:text-4xl font-extrabold mt-2 font-poppins text-slate-900">
-          {user.name}
-        </h1>
-        <p className="text-lg text-sky-800 font-semibold">{user.role}</p>
-        {user.role !== "USER" && (
-          <ProgressBarLink href={"/dashboard"}>
-            <Button
-              className="mt-2 border border-b-4 border-indigo-500"
-              variant="superOutline"
-            >
-              Go to Admin Panel <FcRight className="stroke-[4] ml-2 w-5 h-5" />
-            </Button>
-          </ProgressBarLink>
-        )}
+        <div className="flex w-full space-y-3 items-center flex-col justify-center">
+          <Skeleton className="w-40 h-8 bg-slate-300" />
+          <Skeleton className="w-40 h-8 bg-slate-300" />
+        </div>
       </div>
 
       <div className="mt-8 border-t pt-6">
         <div className="grid grid-cols-1 gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           <div className="sm:col-span-1">
             <p className="text-lg font-semibold text-sky-700">Email</p>
-            <p className="mt-2 text-lg text-gray-900">{user.email}</p>
+            <p className="mt-2 text-lg text-gray-900">
+              {" "}
+              <Skeleton className="w-40 h-8 bg-slate-300" />
+            </p>
           </div>
           <div className="sm:col-span-1">
             <p className="text-lg font-semibold text-sky-700">Total Points</p>
-            <p className="mt-2 text-lg text-gray-900">{user.points}</p>
+            <p className="mt-2 text-lg text-gray-900">
+            <Skeleton className="w-40 h-8 bg-slate-300" />
+            </p>
           </div>
           <div className="sm:col-span-1">
             <p className="text-lg font-semibold text-sky-700">
               Answered Questions
             </p>
             <p className="mt-2 text-lg text-gray-900">
-              {user.answeredQuestions.length}
+            <Skeleton className="w-40 h-8 bg-slate-300" />
             </p>
           </div>
           <div className="sm:col-span-1 lg:col-span-2">
@@ -58,7 +50,7 @@ const Profile = async () => {
               Redeemed Rewards
             </p>
             <p className="mt-2 text-lg text-gray-900">
-              {user.redeemedRewards.length}
+            <Skeleton className="w-40 h-8 bg-slate-300" />
             </p>
           </div>
         </div>
@@ -67,4 +59,4 @@ const Profile = async () => {
   );
 };
 
-export default Profile;
+export default loading;

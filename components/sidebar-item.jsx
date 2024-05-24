@@ -13,7 +13,7 @@ export const SidebarItem = ({
   href,
 }) => {
   const pathname = usePathname();
-  const active = pathname === href;
+  const active = pathname.startsWith(href);
 
   return (
     <Button

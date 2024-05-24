@@ -23,6 +23,7 @@ model User {
   answeredQuestions UserAnswer[]
   role              Role             @default(USER)
   FeedItem          FeedItem[]
+  Reward            Reward[]
 }
 
 enum Role {
@@ -51,11 +52,16 @@ model Account {
 }
 
 model Reward {
-  id              String           @id @default(cuid())
-  name            String
-  image           String
-  description     String
-  redeemedRewards RedeemedReward[]
+  id          String           @id @default(cuid())
+  name        String
+  description String
+  image       String
+  text        String
+  couponCode  String
+  redeemedBy  RedeemedReward[]
+  isActive    Boolean         
+  createdBy   String
+  creator     User             @relation(fields: [createdBy], references: [id])
 }
 
 model RedeemedReward {
@@ -64,7 +70,7 @@ model RedeemedReward {
   rewardId   String
   redeemedAt DateTime @default(now())
 
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   reward Reward @relation(fields: [rewardId], references: [id])
 
   @@index([userId, rewardId], name: "unique_redeemed_reward")
@@ -73,9 +79,9 @@ model RedeemedReward {
 model Question {
   id         String       @id @default(cuid())
   text       String
-  answers    Answer[] 
+  answers    Answer[]
   answeredBy UserAnswer[]
-  FeedItem   FeedItem    @relation(fields: [feedItemId], references: [id])
+  FeedItem   FeedItem     @relation(fields: [feedItemId], references: [id])
   feedItemId String
 }
 
@@ -83,7 +89,7 @@ model Answer {
   id         String   @id @default(cuid())
   text       String
   isCorrect  Boolean
-  question   Question @relation(fields: [questionId], references: [id],onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
   questionId String
 }
 
