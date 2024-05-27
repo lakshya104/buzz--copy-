@@ -10,8 +10,8 @@ const Card = ({ name, image, description, text, active, code, id }) => {
         </h2>
         <Image
           src={image}
-          width={100}
-          height={100}
+          width={200}
+          height={200}
           alt={name}
           className="object-fit w-full rounded-lg max-h-36 mb-2"
         />

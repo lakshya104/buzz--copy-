@@ -55,7 +55,7 @@ const PointsTable = ({ pointBoard, email }) => {
             </TableCell>
             <TableCell
               className={cn(
-                "font-medium",
+                "font-medium hidd",
                 email === item.email && "text-sky-700"
               )}
             >

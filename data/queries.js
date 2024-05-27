@@ -8,10 +8,15 @@ export const getRewards = cache(async () => {
   return rewards;
 });
 
-export const getUserId = cache(async () => {
+export const getUser = cache(async () => {
   const session = await auth();
   const userEmail = session.user.email;
   const user = await getUserByEmail(userEmail);
+  return user;
+});
+
+export const getUserId = cache(async () => {
+  const user = await getUser();
   return user.id;
 });
 
@@ -60,7 +65,6 @@ export const getTotalUsersEngaged = async (userId) => {
   }
   return uniqueUserIds.size;
 };
-
 
 export const getTotalFeedItemsCreated = async (userId) => {
   const totalFeedItems = await db.feedItem.count({
@@ -124,3 +128,22 @@ export const getTotalQuestionsAnsweredForFeedItemsCreated = async (userId) => {
   });
   return totalQuestionsAnswered;
 };
+
+export const checkAdmin = cache(async () => {
+  const user = await getUser();
+  return  user.role === 'ADMIN' || user.role === "BRAND_MANAGER";
+});
+
+export const getAllFeedItems = cache(async () => {
+  try {
+    const feedItems = await db.feedItem.findMany({
+      include: {
+        questions: true,
+      },
+    });
+    return feedItems;
+  } catch (error) {
+    console.error("Error fetching feed items:", error);
+    throw error;
+  }
+});

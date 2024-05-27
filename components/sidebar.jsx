@@ -5,8 +5,10 @@ import { SidebarItem } from "./sidebar-item";
 import { Button } from "./ui/button";
 import { signOut } from "@/auth";
 import SignOutButton from "./auth/signout-button";
+import { checkAdmin } from "@/data/queries";
 
-export const Sidebar = ({ className }) => {
+export const Sidebar = async ({ className }) => {
+  const isAdmin = await checkAdmin();
   return (
     <div
       className={cn(
@@ -14,12 +16,12 @@ export const Sidebar = ({ className }) => {
         className
       )}
     >
-        <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
-          <Image src="/logo.svg" priority height={70} width={70} alt="logo" />
-          <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
-            Buzz
-          </h1>
-        </div>
+      <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
+        <Image src="/logo.svg" priority height={70} width={70} alt="logo" />
+        <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
+          Buzz
+        </h1>
+      </div>
       <div className="flex flex-col gap-y-2 flex-1">
         <SidebarItem label="Home" href="/home" iconSrc="/feed.svg" />
         <SidebarItem
@@ -29,6 +31,13 @@ export const Sidebar = ({ className }) => {
         />
         <SidebarItem label="Redeem" href="/redeem" iconSrc="/redeem.svg" />
         <SidebarItem label="Profile" href="/profile" iconSrc="/profile2.svg" />
+        {isAdmin && (
+            <SidebarItem
+              label="Admin Panel"
+              href="/dashboard"
+              iconSrc="/admin.svg"
+            />
+        )}
         <SidebarItem label="Support" href="/support" iconSrc="/support.svg" />
         <SidebarItem label="T&C" href="/termsConditions" iconSrc="/terms.svg" />
       </div>

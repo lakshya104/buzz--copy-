@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import RefreshBtn from "@/components/server-refresh-btn";
 import Loader from "./loader";
 import TableData from "./table-data";
+import Prizes from "./prizes";
 
 const Leaderboard = async () => {
   return (
@@ -13,6 +14,7 @@ const Leaderboard = async () => {
           subTitle="Leaderboard table was refreshed successfully!"
         />
       </div>
+      <Prizes/>
       <Suspense fallback={<Loader />}>
         <TableData />
       </Suspense>

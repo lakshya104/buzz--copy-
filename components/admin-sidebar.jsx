@@ -24,9 +24,10 @@ export const AdminSidebar = ({ className }) => {
            Admin Panel
           </h1>
       <div className="flex flex-col gap-y-2 flex-1">
-        <SidebarItem label="Dashboard" href="/dashboard" iconSrc="/profile2.svg" />
+        <SidebarItem label="Dashboard" href="/dashboard" iconSrc="/dashboard.svg" />
         <SidebarItem label="Manage Posts" href="/manage-posts" iconSrc="/post.svg" />
-        <SidebarItem label="Manage Rewards" href="/manage-rewards" iconSrc="/redeem.svg" />
+        <SidebarItem label="Manage Rewards" href="/manage-rewards" iconSrc="/manageReward.svg" />
+        <SidebarItem label="Back to Home" href="/home" iconSrc="/feed.svg" />
       </div>
       <div className="lg:hidden px-4 py-8">
         <form

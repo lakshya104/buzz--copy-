@@ -234,20 +234,6 @@ export const hasUserAnsweredQuestion = async (userId, questionId) => {
   }
 };
 
-export const getAllFeedItems = async () => {
-  try {
-    const feedItems = await db.feedItem.findMany({
-      include:{
-        questions:true
-      }
-    });
-    return feedItems;
-  } catch (error) {
-    console.error("Error fetching feed items:", error);
-    throw error;
-  }
-};
-
 export const fetchFeedItemByIdWithQuestions = async (itemId) => {
   try {
     const feedItem = await db.feedItem.findUnique({
@@ -406,18 +392,20 @@ export const updateFeedItem = async (id, newData) => {
 
 export const deleteFeedItem = async (id) => {
   try {
-    await db.feedItem.delete({
+    const deleteFeedItem = await db.feedItem.delete({
       where: {
         id: id,
       },
     });
 
     console.log(`FeedItem with ID ${id} deleted successfully.`);
+    return deleteFeedItem;
   } catch (error) {
     console.error("Error deleting FeedItem:", error);
     throw error;
   }
 };
+
 
 export const createReward = async (
   createdBy,

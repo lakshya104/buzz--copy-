@@ -1,12 +1,11 @@
-import { getUserByEmailAction } from "@/actions/server-utils";
 import { ProgressBarLink } from "@/components/progress-bar";
 import { Button } from "@/components/ui/button";
+import { getUser } from "@/data/queries";
 import Image from "next/image";
-import React from "react";
 import { FcRight } from "react-icons/fc";
 
 const Profile = async () => {
-  const user = await getUserByEmailAction();
+  const user = await getUser();
   return (
     <div className="mx-auto px-8 py-3 bg-white shadow-lg rounded-lg font-inter">
       <div className="text-center">

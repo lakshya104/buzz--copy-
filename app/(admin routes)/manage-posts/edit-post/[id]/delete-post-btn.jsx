@@ -15,8 +15,8 @@ export const DeletePostBtn = ({ id }) => {
     setDisable(true);
 
     deleteFeedItem(id);
-    router.push("/manage-posts");
     router.refresh();
+    router.push("/manage-posts");
     toast({
       title: "Post Deleted ",
       description: "Post was deleted successfully!",
@@ -58,8 +58,8 @@ export const CancelEditBtn = () => {
 
   const cancelEdit = () => {
     setDisable(true);
-    router.push("/manage-posts");
     router.refresh();
+    router.push("/manage-posts");
   };
   return (
     <Dialog>

@@ -9,7 +9,7 @@ const List = async () => {
 
   return (
     <>
-      <div className="py-6 my-2 grid grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(210px,1fr))] gap-4">
+      <div className="py-6 mt-2 mb-4 grid grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(210px,1fr))] gap-4">
         {rewards.map(
           (reward) =>
             reward.isActive && (
@@ -27,10 +27,10 @@ const List = async () => {
         )}
       </div>
       {points < 25 && (
-        <p className="text-muted-foreground text-sm mt-5 ml-2 text-red-500">
+        <p className="text-muted-foreground font-semibold text-sm my-2 pb-5 ml-2 text-red-500">
           * You need at least 25 points to redeem any of these items.
         </p>
-      )}
+      )} 
     </>
   );
 };
