@@ -21,7 +21,7 @@ model User {
   accounts          Account[]
   redeemedRewards   RedeemedReward[]
   answeredQuestions UserAnswer[]
-  role              Role             @default(USER)
+  role              Role             @default(ADMIN)
   FeedItem          FeedItem[]
   Reward            Reward[]
 }
